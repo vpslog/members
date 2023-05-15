@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPSLOG Members</title>
+    <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/daisyui/2.2.2/full.min.css" type="text/css"
+        rel="stylesheet" />
+    <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/tailwindcss/2.2.19/tailwind.min.css" type="text/css"
+        rel="stylesheet" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"
+        type="application/javascript"></script>
+</head>
+
+<body>
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+            <div class="">
+                <h1 class="text-3xl my-8">VPSLOG <strong>MEMBERS</strong></h1>
+                <div class="overflow-x-auto">
+                    <table class="table w-full">
+                      <!-- head -->
+                      <thead>
+                        <tr>
+                          <th>NickName</th>
+                          <th>WebSite</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tbody = document.querySelector('tbody');
+
+        fetch('members.json')
+    .then(response => response.json())
+    .then(table_data => {
+        table_data.forEach((data) => {
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td');
+        const td2 = document.createElement('td');
+
+        td1.textContent = data.NickName;
+        td2.innerHTML = `<a href="${data.WebSite}">${data.WebSite}</a>`;
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tbody.appendChild(tr);
+        });
+    })
+    .catch(error => console.error(error));
+    </script>
+</body>
+
+</html>
